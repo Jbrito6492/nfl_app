@@ -6,7 +6,7 @@
 export type AuthStackParamList = {
   SignUp: undefined;
   LogIn: undefined;
-}
+};
 
 export type RootStackParamList = {
   Root: undefined;
@@ -15,13 +15,23 @@ export type RootStackParamList = {
 
 export type BottomTabParamList = {
   Home: undefined;
-  TabTwo: undefined;
+  Schedule: undefined;
+  Chat: undefined;
+  Settings: undefined;
 };
 
 export type TabOneParamList = {
-  HomeScreen: undefined;
+  Home: undefined;
 };
 
 export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+  Schedule: undefined;
+};
+
+export type TabThreeParamList = {
+  Chat: undefined;
+};
+
+export type TabFourParamList = {
+  Settings: undefined;
 };
