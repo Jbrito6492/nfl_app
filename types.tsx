@@ -35,3 +35,11 @@ export type TabThreeParamList = {
 export type TabFourParamList = {
   Settings: undefined;
 };
+
+export type DrawerParamList = {
+  Home: undefined;
+  Schedule: undefined;
+  Chat: undefined;
+  Settings: undefined;
+  LogOut: undefined;
+}

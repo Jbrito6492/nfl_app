@@ -3,20 +3,21 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
+import * as React from "react";
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import * as React from "react";
 import { ColorSchemeName } from "react-native";
-
+import { Ionicons } from '@expo/vector-icons';
 import SignUpScreen from "../screens/SignUpScreen";
 import LogInScreen from "../screens/LogInScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { AuthStackParamList, RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTabNavigator";
+import DrawerNavigator from "./DrawerNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
 
 export default function Navigation({
@@ -34,8 +35,6 @@ export default function Navigation({
   );
 }
 
-// A root stack navigator is often used for displaying modals on top of all other content
-// Read more here: https://reactnavigation.org/docs/modal
 const AuthStack = createStackNavigator<AuthStackParamList>();
 function AuthNavigator() {
   return (
@@ -46,6 +45,8 @@ function AuthNavigator() {
   );
 }
 
+// A root stack navigator is often used for displaying modals on top of all other content
+// Read more here: https://reactnavigation.org/docs/modal
 const RootStack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
