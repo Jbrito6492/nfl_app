@@ -1,25 +1,15 @@
-/**
- * Learn more about createBottomTabNavigator:
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
-
+import * as React from "react";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
-import * as React from "react";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import HomeScreen from "../screens/HomeScreen";
-import ScheduleScreen from "../screens/ScheduleScreen";
-import ChatScreen from "../screens/ChatScreen";
-import SettingsScreen from "../screens/SettingsScreen";
+import { BottomTabParamList } from "../types";
 import {
-  BottomTabParamList,
-  TabOneParamList,
-  TabTwoParamList,
-  TabThreeParamList,
-  TabFourParamList,
-} from "../types";
+  TabOneNavigator,
+  TabTwoNavigator,
+  TabThreeNavigator,
+  TabFourNavigator,
+} from "./Stacks";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -78,62 +68,4 @@ function TabBarIcon(props: {
   color: string;
 }) {
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
-}
-
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
-
-function TabOneNavigator() {
-  return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ headerTitle: "Home" }}
-      />
-    </TabOneStack.Navigator>
-  );
-}
-
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
-
-function TabTwoNavigator() {
-  return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="Schedule"
-        component={ScheduleScreen}
-        options={{ headerTitle: "League Schedule" }}
-      />
-    </TabTwoStack.Navigator>
-  );
-}
-
-const TabThreeStack = createStackNavigator<TabThreeParamList>();
-
-function TabThreeNavigator() {
-  return (
-    <TabThreeStack.Navigator>
-      <TabThreeStack.Screen
-        name="Chat"
-        component={ChatScreen}
-        options={{ headerTitle: "Chat" }}
-      />
-    </TabThreeStack.Navigator>
-  );
-}
-
-const TabFourStack = createStackNavigator<TabFourParamList>();
-
-function TabFourNavigator() {
-  return (
-    <TabFourStack.Navigator>
-      <TabFourStack.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{ headerTitle: "Settings" }}
-      />
-    </TabFourStack.Navigator>
-  );
 }
