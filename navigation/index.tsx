@@ -11,13 +11,14 @@ import {
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ColorSchemeName } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
 import SignUpScreen from "../screens/SignUpScreen";
 import LogInScreen from "../screens/LogInScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { AuthStackParamList, RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTabNavigator";
 import DrawerNavigator from "./DrawerNavigator";
+import Colors from "../constants/Colors";
 import LinkingConfiguration from "./LinkingConfiguration";
 
 export default function Navigation({
@@ -30,7 +31,7 @@ export default function Navigation({
       linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      <RootNavigator />
+      <DrawerNavigator />
     </NavigationContainer>
   );
 }
@@ -50,7 +51,17 @@ function AuthNavigator() {
 const RootStack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
-    <RootStack.Navigator screenOptions={{ headerShown: false }}>
+    <RootStack.Navigator
+      screenOptions={{
+        headerLeft: () => (
+          <Ionicons
+            name="menu-sharp"
+            size={30}
+            style={{ marginTop: -3, marginLeft: 30 }}
+          />
+        ),
+      }}
+    >
       <RootStack.Screen name="Root" component={BottomTabNavigator} />
       <RootStack.Screen
         name="NotFound"

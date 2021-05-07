@@ -42,4 +42,4 @@ export type DrawerParamList = {
   Chat: undefined;
   Settings: undefined;
   LogOut: undefined;
-}
+};
