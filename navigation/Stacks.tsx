@@ -21,7 +21,7 @@ export function TabOneNavigator() {
       <TabOneStack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ headerTitle: "Home" }}
+        options={{ headerShown: false }}
       />
     </TabOneStack.Navigator>
   );
