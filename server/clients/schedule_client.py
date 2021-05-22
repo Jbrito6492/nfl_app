@@ -26,9 +26,11 @@ class ScheduleClient:
             row_item = []
             for row in rows:
                 data_items = row.find_all('td')
-                for data_item in data_items:            
+                for data_item in data_items:
+                    if 'tickets' in data_item.get('class', {}):
+                        continue
                     data_item = data_item.get('data-date') if data_item.text.strip() == '' else data_item.text
-                    row_item.append(data_item)
+                    if data_item:
+                        row_item.append(data_item)
                 if len(row_item):
                     self.one_week_schedule.append(row_item)
-                row_item = []
