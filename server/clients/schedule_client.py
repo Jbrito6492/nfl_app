@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
-from flask import jsonify
+from serializers.schedule_serializer import ScheduleSerializer
 
 
 class ScheduleClient:
@@ -13,8 +13,7 @@ class ScheduleClient:
         response = requests.get(self.get_url())
         soup = BeautifulSoup(response.text, 'lxml')
         self.parse_soup(soup)
-        print(self.one_week_schedule)
-        jsonify({})
+        return ScheduleSerializer(self.one_week_schedule).serialize()
 
     def get_url(self, path=None):
         return f"{self.domain}/{path}" if path else self.domain
@@ -28,14 +27,20 @@ class ScheduleClient:
                 data_items = row.find_all('td')
 
                 for data_item in data_items:
-                    if 'tickets' in data_item.get('class', {}):
+                    if 'tickets' in data_item.get('class', {}) or 'network' in data_item.get('class', {}):
                         continue
+
+                    teams = data_item.find_all('a', class_='team-name')
+                    for team in teams:
+                        row_item.append(team.text.split(' ')[-1])
+                    if 'schedule-location' in data_item.get('class', {}):
+                        schedule_location = data_item.text.split(', ')
+                        row_item.append(schedule_location[0])
+                        row_item.append(schedule_location[1])
                     elif not data_item.text.strip():
                         date = data_item.get('data-date')
                         if date:
                             row_item.append(date)
-                    elif data_item:
-                        row_item.append(data_item.text)
 
                 if len(row_item):
                     self.one_week_schedule.append(row_item)

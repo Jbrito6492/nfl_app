@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from server.clients.schedule_client import ScheduleClient
 
 app = Flask(__name__)
@@ -10,8 +10,8 @@ def home():
 @app.route('/schedule', methods=['GET'])
 def schedule():
     schedule_client = ScheduleClient()
-    schedule_client.set_one_week_schedule()
-    return 'schedule'
+    schedule = schedule_client.set_one_week_schedule()
+    return jsonify(schedule)
 
 @app.route('/upload', methods=['POST'])
 def upload_image(image):
