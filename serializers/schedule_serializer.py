@@ -10,7 +10,7 @@ class ScheduleSerializer:
             'away_team': MatchupSerializer.parse_team(matchup[0])[0],
             'home_team': MatchupSerializer.parse_team(matchup[1])[0],
             'date_time': matchup[2],
-            'city': MatchupSerializer.parse_location(matchup[3])[1],
+            'location': MatchupSerializer.parse_location(matchup[3])[1],
             'stadium': MatchupSerializer.parse_location(matchup[3])[0]
         }
 
