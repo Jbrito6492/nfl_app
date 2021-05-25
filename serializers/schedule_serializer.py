@@ -1,14 +1,17 @@
+from .matchup_serializer import MatchupSerializer
+
+
 class ScheduleSerializer:
     def __init__(self, one_week_schedule):
         self.one_week_schedule = one_week_schedule
 
     def parse_matchup(self, matchup):
         return {
-            'away_team': matchup[0],
-            'home_team': matchup[1],
+            'away_team': MatchupSerializer.parse_team(matchup[0])[0],
+            'home_team': MatchupSerializer.parse_team(matchup[1])[0],
             'date_time': matchup[2],
-            'stadium': matchup[3],
-            'location': matchup[4]
+            'city': MatchupSerializer.parse_location(matchup[3])[1],
+            'stadium': MatchupSerializer.parse_location(matchup[3])[0]
         }
 
     def serialize(self):
